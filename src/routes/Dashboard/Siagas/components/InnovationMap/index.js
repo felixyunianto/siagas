@@ -1,4 +1,32 @@
 import React from "react";
+import { MapContainer, GeoJSON, TileLayer } from "react-leaflet";
+import { countries } from "../../../../../dummies/geo";
+import randomColor from "randomcolor";
+import "leaflet/dist/leaflet.css";
+
+// TODO:
+// const colors = {
+//   "Belum Ada Data": "red",
+//   "Kurang Inovatif": "yellow",
+//   Inovatif: "blue",
+//   "Sangat Inovatif": "green",
+// };
+
+const center = [51.505, -0.09];
+const newfeatures = countries.features;
+let betterfeatures = newfeatures.slice(0, 35);
+
+const style = (feature) => {
+  return {
+    fillColor: randomColor(),
+    weight: 0.3,
+    opacity: 1,
+    color: "purple",
+    dashArray: "3",
+    fillOpacity: 0.5,
+  };
+};
+const newcountries = { type: countries.type, features: betterfeatures };
 
 const InnovationMap = () => {
   return (
@@ -24,8 +52,19 @@ const InnovationMap = () => {
           <option value="Daerah Tertinggal">Daerah Tertinggal</option>
         </select>
       </div>
-      <div className="w-full flex justify-center items-center bg-gray-500 h-80">
-        UNTUK MAP
+      <div className="flex items-center justify-center w-full bg-gray-500 h-80">
+        <MapContainer
+          className="w-full h-full"
+          center={center}
+          zoom={1}
+          scrollWheelZoom={false}
+        >
+          <TileLayer
+            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <GeoJSON key="my-geojson" data={newcountries} style={style} />
+        </MapContainer>
       </div>
       <div className="flex items-center gap-3">
         <div className="flex items-center gap-2">
