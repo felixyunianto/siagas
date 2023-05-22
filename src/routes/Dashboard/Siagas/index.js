@@ -8,7 +8,7 @@ import RegionData from "./components/RegionData";
 
 const Siagas = () => {
   return (
-    <div className="w-full flex flex-col gap-6 py-6">
+    <div className="flex flex-col w-full gap-6 py-6">
       <div className="text-[#333333] text-2xl font-bold">Dashboard SIAGAS</div>
       <div className="flex flex-col gap-6">
         <AnnouncementCarousel />
@@ -55,7 +55,7 @@ const Siagas = () => {
         </div>
         <CardGradient
           type="secondary"
-          label="Baru"
+          label="Total Inovasi Nasional"
           total={1.61}
         />
         <div className="grid grid-cols-3 gap-4">
